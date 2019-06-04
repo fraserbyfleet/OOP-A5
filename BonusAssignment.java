@@ -5,21 +5,21 @@
 
 class Item {
 
-protected
+    protected
     String location;
-protected
+    protected
     String status;
-protected
+    protected
     String title;
-protected
+    protected
     String type;
-protected
+    protected
     int daysOverdue;
 
-private
+    private
     String callNo;
 
-public
+    public
 
     Item() {
         this.location = "N/A";
@@ -30,10 +30,10 @@ public
         this.callNo = "N/A";
     }
 
-public
+    public
 
     Item(String Location, String Status, String Title, String Type, int DaysOverdue,
-         String CallNo) {
+        String CallNo) {
         this.location = Location;
         this.status = Status;
         this.title = Title;
@@ -42,13 +42,13 @@ public
         this.callNo = CallNo;
     }
 
-public
+    public
 
     String getStatus() {
         return this.status;
     }
 
-public
+    public
 
     int getStatusNo() {
         if (this.status.equals("AVAILABLE"))
@@ -60,13 +60,13 @@ public
         return -1;
     }
 
-public
+    public
 
     int getdaysOverdue() {
         return this.daysOverdue;
     }
 
-public
+    public
 
     void setdaysOverdue(int daysOverdue) {
         this.daysOverdue = daysOverdue;
@@ -78,37 +78,39 @@ public
         return this.callNo;
     }
 
-public
+    public
 
     String getType() {
         return this.type;
     }
 
-public
+    public
 
     String getLocation() {
         return this.location;
     }
 
-public
+    public
 
     String getTitle() {
         return this.title;
     }
 
     //make object immutable
-protected
+    protected
 
     void setCallNo(String callNo) {
         this.callNo = callNo;
     }
 
-public
+    public
 
-    int getFees() { return 0; };
+    int getFees() {
+        return 0;
+    };
 
 
-public
+    public
 
     Boolean statusCheck(String status) {
         //checks if the status is valid
@@ -118,7 +120,7 @@ public
         return false;
     }
 
-public
+    public
 
     String printEmptyRecord(String type) {
 
@@ -130,7 +132,7 @@ public
         return x;
     }
 
-public
+    public
 
     void printDetails() {}
 
@@ -140,117 +142,114 @@ public
 class Book extends
 
 Item {
-private
-String authors;
-private
-int numPages;
+    private
+    String authors;
+    private
+    int numPages;
 
-public
+    public
 
-Book(String
-Location,
-String Status, String
-Title,
-String Type,
-int DaysOverdue,
-        String
-CallNo,
-String Authors,
-int NumPages
-) {
-super(Location, Status, Title, Type, DaysOverdue,
-        CallNo
-);
-authors = Authors;
-numPages = NumPages;
-if(!statusCheck(this.status)){
-System.out.println("Warning INVALID STATUS.\n");
-setauthors(authors);
-setnumPages(numPages);
-}
-}
-//Checking to see if status is valid when the copy finalructor is invoked.
-
-public
-
-final int getFees() {
-    int fee = getdaysOverdue() * 2;
-    return fee;
-
-}
-
-final String
-
-getauthors() {
-    return authors;
-}
-
-private
-
-void setauthors(final String authors) {
-    this.authors = authors;
-}
-
-private
-
-int getnumPages() {
-    return numPages;
-}
-
-private
-
-void setnumPages(int numPages) {
-    this.numPages = numPages;
-}
-
-public
-
-void printDetails() {
-    //.return(printObjectDetails(this, 1));
-    //using my function which will be discussed later
-    int status = this.getStatusNo();
-    String callNumber = this.getcallNo();
-    String bookAuthors = this.getauthors();
-    int bookNumPages = this.getnumPages();
-
-    switch (status) {
-
-        case 1: {
-            System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
-                               "Status: AVAILABLE" +
-                               ", Call Number: " + callNumber + ", Author(s): " + bookAuthors + ", Number Pages: " +
-                               bookNumPages + "\n");
-
-            break;
-        }
-
-        case 2: {
-
-            System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
-                               "Status: OVERDUE " + getdaysOverdue() + " Days" + ", Call Number: " + callNumber +
-                               ", Author(s): " + bookAuthors + ", Number Pages: " + bookNumPages + "\n");
-
-            break;
-        }
-
-        case 3: {
-
-            System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
-                               "Status: MISSING" + ", Call Number: " + callNumber + ", Author(s): " + bookAuthors +
-                               ", Number Pages: " + bookNumPages + "\n");
-
-            break;
-        }
-
-
-        default: {
-            // String temp = printEmptyRecord("Book");
-            //  return temp;
-            //break;
+    Book(String Location,
+        String Status, String Title,
+        String Type,
+        int DaysOverdue,
+        String CallNo,
+        String Authors,
+        int NumPages
+    ) {
+        super(Location, Status, Title, Type, DaysOverdue,
+            CallNo
+        );
+        authors = Authors;
+        numPages = NumPages;
+        if (!statusCheck(this.status)) {
+            System.out.println("Warning INVALID STATUS.\n");
+            setauthors(authors);
+            setnumPages(numPages);
         }
     }
+    //Checking to see if status is valid when the copy finalructor is invoked.
 
-}
+    public
+
+    final int getFees() {
+        int fee = getdaysOverdue() * 2;
+        return fee;
+
+    }
+
+    final String
+
+    getauthors() {
+        return authors;
+    }
+
+    private
+
+    void setauthors(final String authors) {
+        this.authors = authors;
+    }
+
+    private
+
+    int getnumPages() {
+        return numPages;
+    }
+
+    private
+
+    void setnumPages(int numPages) {
+        this.numPages = numPages;
+    }
+
+    public
+
+    void printDetails() {
+        //.return(printObjectDetails(this, 1));
+        //using my function which will be discussed later
+        int status = this.getStatusNo();
+        String callNumber = this.getcallNo();
+        String bookAuthors = this.getauthors();
+        int bookNumPages = this.getnumPages();
+
+        switch (status) {
+
+            case 1: {
+                System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
+                    "Status: AVAILABLE" +
+                    ", Call Number: " + callNumber + ", Author(s): " + bookAuthors + ", Number Pages: " +
+                    bookNumPages + "\n");
+
+                break;
+            }
+
+            case 2: {
+
+                System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
+                    "Status: OVERDUE " + getdaysOverdue() + " Days" + ", Call Number: " + callNumber +
+                    ", Author(s): " + bookAuthors + ", Number Pages: " + bookNumPages + "\n");
+
+                break;
+            }
+
+            case 3: {
+
+                System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
+                    "Status: MISSING" + ", Call Number: " + callNumber + ", Author(s): " + bookAuthors +
+                    ", Number Pages: " + bookNumPages + "\n");
+
+                break;
+            }
+
+
+            default: {
+                // String temp = printEmptyRecord("Book");
+                //  return temp;
+                //break;
+            }
+        }
+
+    }
 
 
 };
@@ -258,118 +257,114 @@ void printDetails() {
 class Journal extends
 
 Item {
-private
-String publisher;
-private
-int frequency;
+    private
+    String publisher;
+    private
+    int frequency;
 
 
-public
-Journal(String
-Location,
-String Status, String
-Title,
-String Type,
-int DaysOverdue,
-        String
-CallNo,
-int Frequency, String
-Publisher){
-super(Location, Status, Title, Type, DaysOverdue,
-        CallNo
-);
-//if(!statusCheck(this.status))
-//cout+ "\nWarning INVALID STATUS.\n";}
-setpublisher(Publisher);
-setfrequency(Frequency);
+    public
+    Journal(String Location,
+        String Status, String Title,
+        String Type,
+        int DaysOverdue,
+        String CallNo,
+        int Frequency, String Publisher) {
+        super(Location, Status, Title, Type, DaysOverdue,
+            CallNo
+        );
+        //if(!statusCheck(this.status))
+        //cout+ "\nWarning INVALID STATUS.\n";}
+        setpublisher(Publisher);
+        setfrequency(Frequency);
 
-}
-//Checking for a valid status during the invokation of the paramaterized finalructor just as before.
-
-//functions are final to prevent any possible changes to data members which is ideal for my gettors
-public
-
-int getFees() {
-    int fee = getdaysOverdue() * 3;
-    return fee;
-
-}
-
-final String
-
-getpublisher() {
-    return publisher;
-}
-
-private
-
-void setpublisher(final String Publisher) {
-    this.publisher = Publisher;
-}
-
-private
-
-int getfrequency() {
-    return frequency;
-}
-
-private
-
-void setfrequency(int frequency) {
-    this.frequency = frequency;
-}
-
-public
-
-void printDetails() {
-    //return(printObjectDetails(this, 2));
-    int status = this.getStatusNo();
-    String callNumber = this.getcallNo();
-    int journalFrequency = this.getfrequency();
-    String journalPublisher = this.getpublisher();
-    switch (status) {
-
-        case 1: {
-            //CASE1_2:
-            // Journal* journal =  dynamic_cast<Journal*>(item); 
-
-            System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
-                               "Status: AVAILABLE" + ", Call Number: " + callNumber + ", Annual Frequency: " +
-                               journalFrequency + ", Publisher: " + journalPublisher + "\n");
-            //return out.str();
-            break;
-        }
-
-        case 2: {
-            //goto CASE1_2;
-            // Journal* journal =  dynamic_cast<Journal*>(item); 
-
-            System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
-                               "Status: OVERDUE " + getdaysOverdue() + " Days" + ", Call Number: " + callNumber +
-                               ", Annual Frequency: " + journalFrequency + ", Publisher: " + journalPublisher + "\n");
-            // return out.str();
-            break;
-        }
-
-        case 3: {
-            // Journal* journal =  dynamic_cast<Journal*>(item); 
-
-            System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
-                               "Status: MISSING" + ", Call Number: " + callNumber + ", Annual Frequency: " +
-                               journalFrequency + ", Publisher: " + journalPublisher + "\n");
-            //return out.str();
-            break;
-        }
-
-        default: {
-            String temp = printEmptyRecord("Journal");
-            // return temp;
-            // break;
-        }
     }
-    // String x = "tempvalue";
-    // return x;
-}
+    //Checking for a valid status during the invokation of the paramaterized finalructor just as before.
+
+    //functions are final to prevent any possible changes to data members which is ideal for my gettors
+    public
+
+    int getFees() {
+        int fee = getdaysOverdue() * 3;
+        return fee;
+
+    }
+
+    final String
+
+    getpublisher() {
+        return publisher;
+    }
+
+    private
+
+    void setpublisher(final String Publisher) {
+        this.publisher = Publisher;
+    }
+
+    private
+
+    int getfrequency() {
+        return frequency;
+    }
+
+    private
+
+    void setfrequency(int frequency) {
+        this.frequency = frequency;
+    }
+
+    public
+
+    void printDetails() {
+        //return(printObjectDetails(this, 2));
+        int status = this.getStatusNo();
+        String callNumber = this.getcallNo();
+        int journalFrequency = this.getfrequency();
+        String journalPublisher = this.getpublisher();
+        switch (status) {
+
+            case 1: {
+                //CASE1_2:
+                // Journal* journal =  dynamic_cast<Journal*>(item); 
+
+                System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
+                    "Status: AVAILABLE" + ", Call Number: " + callNumber + ", Annual Frequency: " +
+                    journalFrequency + ", Publisher: " + journalPublisher + "\n");
+                //return out.str();
+                break;
+            }
+
+            case 2: {
+                //goto CASE1_2;
+                // Journal* journal =  dynamic_cast<Journal*>(item); 
+
+                System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
+                    "Status: OVERDUE " + getdaysOverdue() + " Days" + ", Call Number: " + callNumber +
+                    ", Annual Frequency: " + journalFrequency + ", Publisher: " + journalPublisher + "\n");
+                // return out.str();
+                break;
+            }
+
+            case 3: {
+                // Journal* journal =  dynamic_cast<Journal*>(item); 
+
+                System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
+                    "Status: MISSING" + ", Call Number: " + callNumber + ", Annual Frequency: " +
+                    journalFrequency + ", Publisher: " + journalPublisher + "\n");
+                //return out.str();
+                break;
+            }
+
+            default: {
+                String temp = printEmptyRecord("Journal");
+                // return temp;
+                // break;
+            }
+        }
+        // String x = "tempvalue";
+        // return x;
+    }
 
 
 }
@@ -377,125 +372,122 @@ void printDetails() {
 class AV extends
 
 Item {
-private
-String subject;
-public
-final String
+    private
+    String subject;
+    public
+    final String
 
-getsubject() {
-    return subject;
-}
+    getsubject() {
+        return subject;
+    }
 
-private
+    private
 
-void setsubject(final String subject) {
-    this.subject = subject;
-}
+    void setsubject(final String subject) {
+        this.subject = subject;
+    }
 
-public
+    public
 
-int getFees() {
-    int fee = getdaysOverdue() * 5;
-    return fee;
+    int getFees() {
+        int fee = getdaysOverdue() * 5;
+        return fee;
 
-}
+    }
 
-public
+    public
 
-AV() {
-    this.location = "N/A";
-    this.status = "MISSING";
-    this.title = "EMPTY RECORD";
-    this.type = "";
-    //this.daysOverdue = 0; 
-    setCallNo("N/A");
-    setsubject("N/A");
-}
+    AV() {
+        this.location = "N/A";
+        this.status = "MISSING";
+        this.title = "EMPTY RECORD";
+        this.type = "";
+        //this.daysOverdue = 0; 
+        setCallNo("N/A");
+        setsubject("N/A");
+    }
 
-public
-AV(String
-Location,
-String Status, String
-Title,
-String Type,
-int DaysOverdue,
-        String
-CallNo,
-String Subject
-) {
-super(Location, Status, Title, Type, DaysOverdue,
-        CallNo
-);
+    public
+    AV(String Location,
+        String Status, String Title,
+        String Type,
+        int DaysOverdue,
+        String CallNo,
+        String Subject
+    ) {
+        super(Location, Status, Title, Type, DaysOverdue,
+            CallNo
+        );
 
-setsubject(subject);
-this.
-subject = Subject;
+        setsubject(subject);
+        this.
+        subject = Subject;
 
-if(!statusCheck(this.status)){
-System.out.print("ERROR! Status entered incorrectly!\n\n");
+        if (!statusCheck(this.status)) {
+            System.out.print("ERROR! Status entered incorrectly!\n\n");
 
-}
-}
-
-
-public
-
-void printDetails() {
-    int status = getStatusNo();
-    String callNumber = this.getcallNo();
-
-    switch (status) {
-
-        case 1: {
-            //CASE1_3:
-
-            String AVsubject = this.getsubject();
-            System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
-                               "Status: AVAILABLE" + ", Call Number: " + callNumber + ", Subject: " + AVsubject + "\n");
-
-            break;
         }
+    }
 
-        case 2: {
-            //goto CASE1_3;
 
-            String AVsubject = this.getsubject();
-            System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
-                               "Status: OVERDUE " + getdaysOverdue() + " Days" + ", Call Number: " + callNumber +
-                               ", Subject: " + AVsubject + "\n");
+    public
 
-            break;
+    void printDetails() {
+        int status = getStatusNo();
+        String callNumber = this.getcallNo();
+
+        switch (status) {
+
+            case 1: {
+                //CASE1_3:
+
+                String AVsubject = this.getsubject();
+                System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
+                    "Status: AVAILABLE" + ", Call Number: " + callNumber + ", Subject: " + AVsubject + "\n");
+
+                break;
+            }
+
+            case 2: {
+                //goto CASE1_3;
+
+                String AVsubject = this.getsubject();
+                System.out.println("Location: " + location + ", Title: " + title + ", Type: " + type + "\n" +
+                    "Status: OVERDUE " + getdaysOverdue() + " Days" + ", Call Number: " + callNumber +
+                    ", Subject: " + AVsubject + "\n");
+
+                break;
+            }
+
+            case 3: {
+                String AVsubject = this.getsubject();
+                System.out.println("Location: " + location + ", Title: " + title + ",  Type: " + type + "\n" +
+                    "Status: MISSING" + ", Call Number: " + callNumber + ", Subject: " + AVsubject + "\n");
+
+                break;
+            }
+
+            default: {
+                String temp = printEmptyRecord("AV");
+                //return temp;
+                // break;
+            }
         }
-
-        case 3: {
+        if (status == -1) {
             String AVsubject = this.getsubject();
             System.out.println("Location: " + location + ", Title: " + title + ",  Type: " + type + "\n" +
-                               "Status: MISSING" + ", Call Number: " + callNumber + ", Subject: " + AVsubject + "\n");
-
-            break;
+                "Status: MISSING" + ", Call Number: " + callNumber + ", Subject: " + AVsubject);
         }
+        String x = "tempvalue";
+        //return x;
 
-        default: {
-            String temp = printEmptyRecord("AV");
-            //return temp;
-            // break;
-        }
     }
-    if (status == -1) {
-        String AVsubject = this.getsubject();
-        System.out.println("Location: " + location + ", Title: " + title + ",  Type: " + type + "\n" +
-                           "Status: MISSING" + ", Call Number: " + callNumber + ", Subject: " + AVsubject);
-    }
-    String x = "tempvalue";
-    //return x;
-
-}
 
 }
 
 
 class Main {
-public
+    public
 
     static void main(String[] args) {
         // Prints "Hello, World" to the terminal window.    
@@ -507,34 +499,34 @@ public
 
         //3 Books: ctr takes location, status, title, type, days overdue, call number, authors and number of pages
         items[0] = new Book("EBOOK", "AVAILABLE", "C++ How to program", "Book", 0, "EBOOK",
-                            "Paul Dietel, Harvey Dietel",
-                            1080);
+            "Paul Dietel, Harvey Dietel",
+            1080);
 
         items[1] = new Book("Albany Main Collection", "AVAILABLE", "Absolute C++", "Book", 0, "005.133 C sav",
-                            "Walter Savitch", 975);
+            "Walter Savitch", 975);
 
         items[2] = new Book("Manawatu Main Collection", "OVERDUE", "Starting out with C++", "Book", 6, "005.133C++ Gad",
-                            "Tony Gaddis", 1238);
+            "Tony Gaddis", 1238);
         //new Book
 
         //3 Journals: ctr takes location, status, title, type, days overdue, call number, frequency and publisher
         items[3] = new Journal("ONLINE", "AVAILABLE", "Communications of the ACM", "Journal", 0, "INTERNET", 12, "ACM");
 
         items[4] = new Journal("ONLINE", "AVAILABLE", "Computers in Human Behaviour", "Journal", 0, "INTERNET", 6,
-                               "Pergamon Press");
+            "Pergamon Press");
 
         items[5] = new Journal("ONLINE", "AVAILABLE", "IEEE Transaction on big data", "Journal", 0, "INTERNET", 4,
-                               "IEEE");
+            "IEEE");
         //4 AV: ctr takes location, status, title, type, days overdue, call number and subject
         items[6] = new AV();
         items[7] = new AV("Wellington Music", "OVERDUE", "Music is choice", "AV-music", 5, "782.4949292 Tri",
-                          "DVD - Rock Music");
+            "DVD - Rock Music");
         // testing the def constructor -- display empty record when printed.
         items[8] = new AV("Manawatu NZ Collection", "AVAILABLE", "Holy smoke", "AV-music", 0, "782.393429 Gin",
-                          "DVD - Jazz Music");
+            "DVD - Jazz Music");
 
         items[9] = new AV("Albany Feature Films", "MISSING", "Indiana Jones", "Video-movie", 0, "731.49291 Ind",
-                          "DVD - Adventure movie");
+            "DVD - Adventure movie");
 
         // cout + "Printing all " + SIZE + " items.";
         for (int i = 0; i < SIZE; i++) {
@@ -554,9 +546,9 @@ public
 
 
         System.out.println(
-                "Additional test to see if ERROR message performed for invalid status when constructor called:");
+            "Additional test to see if ERROR message performed for invalid status when constructor called:");
         AV test = new AV("Albany Feature Films", "FAKE STATUS!", "Star Wars 52", "Video-movie", 0, "831.49321 Ind",
-                         "DVD - Adventure movie");
+            "DVD - Adventure movie");
         test.printDetails();
         // return EXIT_SUCCESS;
 
@@ -564,8 +556,8 @@ public
         System.out.println("\nAll done! Arrivederci!");
     }
 
-//------------------------------------Global Functions---------------------------------------------------
-public
+    //------------------------------------Global Functions---------------------------------------------------
+    public
 
     static void print() {
         System.out.println("*****************************");
@@ -576,6 +568,3 @@ public
         System.out.println("*****************************\n");
     }
 }
-
-
-
