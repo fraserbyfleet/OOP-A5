@@ -528,7 +528,7 @@ class Main {
         items[9] = new AV("Albany Feature Films", "MISSING", "Indiana Jones", "Video-movie", 0, "731.49291 Ind",
             "DVD - Adventure movie");
 
-        // cout + "Printing all " + SIZE + " items.";
+        System.out.println("Printing all " + SIZE + " items.");
         for (int i = 0; i < SIZE; i++) {
             items[i].printDetails();
         }
